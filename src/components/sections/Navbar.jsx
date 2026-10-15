@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Menu, X, MessageCircle } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { BRAND, NAV_LINKS } from '../../data/content.js';
+import { handleAnchorClick } from '../../lib/scrollToSection.js';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,12 +14,9 @@ export function Navbar() {
     setScrolled(latest > 40);
   });
 
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [open]);
+  // Fecha o menu e rola até a seção.
+  const handleNavClick = (event, href) =>
+    handleAnchorClick(event, href, () => setOpen(false));
 
   return (
     <motion.header
@@ -32,7 +31,11 @@ export function Navbar() {
       ].join(' ')}
     >
       <nav className="section-shell flex h-16 items-center justify-between sm:h-[4.5rem]">
-        <a href="#inicio" className="group flex items-center gap-3">
+        <a
+          href="#inicio"
+          onClick={(event) => handleNavClick(event, '#inicio')}
+          className="group flex items-center gap-3"
+        >
           <img
             src="/images/logo.jpg"
             alt=""
@@ -53,7 +56,8 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="relative text-xs font-medium uppercase tracking-[0.14em] text-brand-gray-light transition-colors hover:text-white after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-brand-red after:transition-all after:duration-300 hover:after:w-full"
+                onClick={(event) => handleNavClick(event, link.href)}
+                className="relative text-xs font-medium uppercase tracking-[0.14em] text-brand-gray-light transition-colors hover:text-white after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -68,7 +72,7 @@ export function Navbar() {
             rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-full border border-white/20 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-black transition hover:bg-brand-gray-light/20 hover:text-white sm:inline-flex"
           >
-            <MessageCircle className="h-3.5 w-3.5" />
+            <FaWhatsapp className="h-4 w-4" />
             Fale conosco
           </a>
 
@@ -103,7 +107,7 @@ export function Navbar() {
                 >
                   <a
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(event) => handleNavClick(event, link.href)}
                     className="block rounded-xl px-3 py-3 font-heading text-xl font-semibold uppercase tracking-wide text-white transition hover:bg-white/5"
                   >
                     {link.label}
@@ -117,7 +121,7 @@ export function Navbar() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-black"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <FaWhatsapp className="h-4 w-4" />
                   Fale conosco
                 </a>
               </li>

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { BRAND } from '../../data/content.js';
 
 export function WhatsappFab() {
@@ -27,7 +27,7 @@ export function WhatsappFab() {
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-black shadow-[0_12px_40px_rgba(37,211,102,0.35)]"
         >
-          <MessageCircle className="h-6 w-6" />
+          <FaWhatsapp className="h-7 w-7" />
         </motion.a>
       ) : null}
     </AnimatePresence>

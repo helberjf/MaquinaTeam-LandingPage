@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { ArrowRight, MessageCircle, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { BRAND, STATS } from '../../data/content.js';
+import { handleAnchorClick } from '../../lib/scrollToSection.js';
 
 const titleContainer = {
   hidden: {},
@@ -106,6 +108,7 @@ export function Hero() {
         >
           <a
             href="#planos"
+            onClick={(event) => handleAnchorClick(event, '#planos')}
             className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-brand-gray-light/90 sm:w-auto"
           >
             Ver planos
@@ -117,7 +120,7 @@ export function Hero() {
             rel="noopener noreferrer"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:border-white/60 hover:bg-white/5 sm:w-auto"
           >
-            <MessageCircle className="h-4 w-4" />
+            <FaWhatsapp className="h-4 w-4" />
             Agendar aula
           </a>
         </motion.div>
@@ -144,6 +147,7 @@ export function Hero() {
 
       <motion.a
         href="#academia"
+        onClick={(event) => handleAnchorClick(event, '#academia')}
         aria-label="Rolar para a próxima seção"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

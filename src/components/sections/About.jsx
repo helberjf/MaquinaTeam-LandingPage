@@ -82,7 +82,7 @@ export function About() {
                 direction="right"
                 className="flex items-start gap-4 rounded-2xl border border-white/8 bg-white/[0.03] p-4 transition hover:border-white/20 hover:bg-white/[0.06]"
               >
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-red/15 text-brand-red">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">
                   <Check className="h-3.5 w-3.5" />
                 </span>
                 <p className="text-sm leading-6 text-brand-gray-light">{highlight}</p>

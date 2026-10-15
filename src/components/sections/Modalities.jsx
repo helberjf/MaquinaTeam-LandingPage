@@ -44,7 +44,7 @@ export function Modalities() {
 
                 <span
                   aria-hidden="true"
-                  className="absolute left-0 top-0 h-full w-px bg-brand-red opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  className="absolute left-0 top-0 h-full w-px bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 />
               </article>
             </StaggerItem>

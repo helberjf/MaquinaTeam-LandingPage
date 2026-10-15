@@ -7,8 +7,10 @@
     color-scheme: dark;
   }
 
+  /* O scroll suave é feito em JS (src/lib/scrollToSection.js), porque alguns
+     navegadores ignoram `scroll-behavior: smooth`. O scroll-padding fica como
+     garantia para o salto nativo por âncora. */
   html {
-    scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
 
@@ -61,10 +63,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   .animate-marquee {
     animation: none;
   }

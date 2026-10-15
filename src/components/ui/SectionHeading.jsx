@@ -21,7 +21,7 @@ export function SectionHeading({
       {eyebrow ? (
         <Reveal direction="up" duration={0.5}>
           <span className="eyebrow inline-flex items-center gap-3">
-            <span aria-hidden="true" className="h-px w-8 bg-brand-red" />
+            <span aria-hidden="true" className="h-px w-8 bg-white/50" />
             {eyebrow}
           </span>
         </Reveal>
