@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# Pastas de referência do site antigo (HTML estático)
+fight_academy_site_completo_v2/
+maquina_team_site/
+maquina_team_site_planos_atualizados/
+indexteste.html
+indexteste copy.html
