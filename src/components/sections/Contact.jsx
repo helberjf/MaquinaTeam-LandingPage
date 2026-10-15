@@ -1,4 +1,5 @@
-import { Clock, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { ArrowUpRight, Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { FaInstagram, FaWhatsapp } from 'react-icons/fa6';
 import { BRAND } from '../../data/content.js';
 import { SectionHeading } from '../ui/SectionHeading.jsx';
 import { Reveal, Stagger, StaggerItem } from '../motion/Reveal.jsx';
@@ -22,7 +23,7 @@ const CONTACT_ITEMS = [
     href: `tel:+553231983704`,
   },
   {
-    icon: MessageCircle,
+    icon: FaWhatsapp,
     label: 'WhatsApp',
     value: BRAND.contact.whatsapp,
     href: BRAND.contact.whatsappUrl,
@@ -34,7 +35,7 @@ const CONTACT_ITEMS = [
     href: `mailto:${BRAND.contact.email}`,
   },
   {
-    icon: Instagram,
+    icon: FaInstagram,
     label: 'Instagram',
     value: BRAND.contact.instagram,
     href: BRAND.contact.instagramUrl,
@@ -61,11 +62,11 @@ export function Contact() {
             {CONTACT_ITEMS.map((item) => {
               const Icon = item.icon;
               const content = (
-                <div className="flex h-full items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25 hover:bg-white/[0.06]">
+                <div className="relative flex h-full items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25 hover:bg-white/[0.06]">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white">
                     <Icon className="h-4 w-4" />
                   </span>
-                  <div className="min-w-0">
+                  <div className={['min-w-0', item.href ? 'pr-6' : ''].join(' ')}>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-light">
                       {item.label}
                     </p>
@@ -73,6 +74,14 @@ export function Contact() {
                       {item.value}
                     </p>
                   </div>
+
+                  {/* Seta indicando que o item abre um link */}
+                  {item.href ? (
+                    <ArrowUpRight
+                      aria-hidden="true"
+                      className="absolute right-3 top-3 h-4 w-4 text-brand-gray-light transition-all duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-hover/link:text-white"
+                    />
+                  ) : null}
                 </div>
               );
 
@@ -83,7 +92,7 @@ export function Contact() {
                       href={item.href}
                       target={item.href.startsWith('http') ? '_blank' : undefined}
                       rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="block h-full"
+                      className="group/link block h-full"
                     >
                       {content}
                     </a>
@@ -102,7 +111,7 @@ export function Contact() {
               rel="noopener noreferrer"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-brand-gray-light/90 sm:w-auto"
             >
-              <MessageCircle className="h-4 w-4" />
+              <FaWhatsapp className="h-5 w-5" />
               Agendar aula experimental
             </a>
           </Reveal>

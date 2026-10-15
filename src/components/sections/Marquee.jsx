@@ -30,7 +30,7 @@ export function Marquee() {
             <span className="font-heading text-3xl font-bold uppercase tracking-tight text-white/85 sm:text-4xl">
               {word}
             </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/35" />
           </span>
         ))}
       </motion.div>

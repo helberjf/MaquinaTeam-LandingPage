@@ -1,5 +1,7 @@
-import { Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { FaInstagram, FaWhatsapp } from 'react-icons/fa6';
 import { BRAND, NAV_LINKS, MODALITIES } from '../../data/content.js';
+import { handleAnchorClick } from '../../lib/scrollToSection.js';
 import { Reveal } from '../motion/Reveal.jsx';
 
 export function Footer() {
@@ -48,6 +50,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    onClick={(event) => handleAnchorClick(event, link.href)}
                     className="text-sm text-brand-gray-light transition hover:text-white"
                   >
                     {link.label}
@@ -87,7 +90,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 transition hover:text-white"
                 >
-                  <MessageCircle className="h-4 w-4 shrink-0" />
+                  <FaWhatsapp className="h-4 w-4 shrink-0" />
                   {BRAND.contact.whatsapp}
                 </a>
               </li>
@@ -107,7 +110,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 transition hover:text-white"
                 >
-                  <Instagram className="h-4 w-4 shrink-0" />
+                  <FaInstagram className="h-4 w-4 shrink-0" />
                   {BRAND.contact.instagram}
                 </a>
               </li>
