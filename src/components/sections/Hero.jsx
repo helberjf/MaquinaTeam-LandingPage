@@ -118,10 +118,10 @@ export function Hero() {
             href={BRAND.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:border-white/60 hover:bg-white/5 sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-4 py-4 text-[11px] font-semibold uppercase tracking-[0.06em] text-white transition hover:border-white/60 hover:bg-white/5 sm:w-auto sm:px-8 sm:text-xs sm:tracking-[0.18em]"
           >
-            <FaWhatsapp className="h-4 w-4" />
-            Agendar aula
+            <FaWhatsapp className="h-4 w-4 shrink-0" />
+            Agende sua aula experimental gratuita
           </a>
         </motion.div>
 

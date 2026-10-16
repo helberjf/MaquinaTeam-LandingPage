@@ -112,7 +112,7 @@ export function Contact() {
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-brand-gray-light/90 sm:w-auto"
             >
               <FaWhatsapp className="h-5 w-5" />
-              Agendar aula experimental
+              Agendar aula experimental grátis
             </a>
           </Reveal>
         </div>
