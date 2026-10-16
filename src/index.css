@@ -14,6 +14,13 @@
     scroll-padding-top: 5rem;
   }
 
+  /* Animações que entram de lado (Reveal com x inicial) começam deslocadas e
+     alargavam a página, criando scroll horizontal. `clip` corta só no eixo x,
+     sem criar container de scroll e sem esconder nada na vertical. */
+  section {
+    overflow-x: clip;
+  }
+
   body {
     @apply bg-brand-black font-sans text-brand-white antialiased;
   }
