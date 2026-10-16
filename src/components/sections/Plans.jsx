@@ -197,7 +197,7 @@ export function Plans() {
             </h3>
             <p className="max-w-xl text-sm leading-7 text-brand-gray-light">
               Fale com a equipe no WhatsApp para conhecer a academia, tirar dúvidas sobre os
-              planos e agendar sua aula experimental.
+              planos e agendar sua aula experimental gratuita.
             </p>
             <a
               href={BRAND.contact.whatsappUrl}

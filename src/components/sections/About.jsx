@@ -58,10 +58,10 @@ export function About() {
             className="absolute left-3 top-6 rounded-2xl border border-white/15 bg-brand-black/90 px-5 py-4 backdrop-blur lg:-left-6"
           >
             <p className="font-heading text-3xl font-bold leading-none text-white">
-              {new Date().getFullYear() - BRAND.foundedYear}+
+              Grátis
             </p>
             <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-gray-light">
-              Anos de academia
+              Aula experimental
             </p>
           </Reveal>
         </div>
@@ -77,7 +77,7 @@ export function About() {
                 para quem treina
               </>
             }
-            description={`Desde ${BRAND.foundedYear}, a Máquina Team é um centro de treinamento de luta em Juiz de Fora. Técnica, condicionamento e um ambiente premium em preto e branco — com o acompanhamento direto do ${BRAND.instructor}.`}
+            description={`${BRAND.motto} A Máquina Team é um centro de treinamento de lutas em Juiz de Fora, focado em lutas, treinos e resultados — com o acompanhamento direto do ${BRAND.instructor}.`}
           />
 
           <Stagger className="mt-10 flex flex-col gap-4" stagger={0.12}>

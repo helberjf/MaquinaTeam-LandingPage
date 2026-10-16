@@ -3,7 +3,8 @@ export const BRAND = {
   tagline: 'Premium Fight Club',
   slogan: 'Treino forte. Ambiente premium. Evolução real.',
   instructor: 'Professor Arthur Maquininha',
-  foundedYear: 2018,
+  // Da bio do Instagram (@maquinateam).
+  motto: 'Nascemos de um estilo. Evoluímos para MÁQUINA.',
   highlights: [
     'Treinos técnicos para iniciantes e atletas',
     'Rotina forte de condicionamento para luta',
@@ -12,12 +13,13 @@ export const BRAND = {
   ],
   contact: {
     phone: '(32) 3198-3704',
-    whatsapp: '(32) 99150-7929',
+    // Mesmo número do link da bio do Instagram (wa.me/553231983704).
+    whatsapp: '(32) 3198-3704',
     email: 'Maquinateam.adm@gmail.com',
     instagram: '@maquinateam',
     instagramUrl: 'https://instagram.com/maquinateam',
     whatsappUrl:
-      'https://wa.me/5532991507929?text=Ol%C3%A1!+Gostaria+de+saber+mais+sobre+os+planos+da+M%C3%A1quina+Team.',
+      'https://wa.me/553231983704?text=Ol%C3%A1!+Gostaria+de+saber+mais+sobre+os+planos+da+M%C3%A1quina+Team.',
   },
   address: {
     street: 'Rua Fonseca Hermes, 5 - Centro',
