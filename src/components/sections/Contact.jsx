@@ -1,48 +1,66 @@
-import { ArrowUpRight, Clock, Mail, MapPin, Phone } from 'lucide-react';
-import { FaInstagram, FaWhatsapp } from 'react-icons/fa6';
+import { useEffect, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { BRAND } from '../../data/content.js';
+import { ContactIcon } from '../ui/ContactIcon.jsx';
 import { SectionHeading } from '../ui/SectionHeading.jsx';
 import { Reveal, Stagger, StaggerItem } from '../motion/Reveal.jsx';
 
 const CONTACT_ITEMS = [
   {
-    icon: MapPin,
+    type: 'address',
     label: 'Endereço',
     value: BRAND.address.full,
     href: BRAND.address.mapsUrl,
   },
   {
-    icon: Clock,
+    type: 'hours',
     label: 'Horário',
     value: BRAND.hours.label,
   },
   {
-    icon: Phone,
+    type: 'phone',
     label: 'Telefone',
     value: BRAND.contact.phone,
     href: `tel:+553231983704`,
   },
   {
-    icon: FaWhatsapp,
+    type: 'whatsapp',
     label: 'WhatsApp',
     value: BRAND.contact.whatsapp,
     href: BRAND.contact.whatsappUrl,
   },
   {
-    icon: Mail,
+    type: 'email',
     label: 'E-mail',
     value: BRAND.contact.email,
     href: `mailto:${BRAND.contact.email}`,
   },
   {
-    icon: FaInstagram,
+    type: 'instagram',
     label: 'Instagram',
     value: BRAND.contact.instagram,
     href: BRAND.contact.instagramUrl,
   },
 ];
 
+// Foto real da fachada (Muay Thai · Boxe · Funcional, (32) 3198-3704).
+const FACADE_SRC = '/images/fachada-atual.webp';
+
 export function Contact() {
+  // Só mostra a foto depois de confirmar que ela carrega: assim nunca aparece
+  // imagem quebrada nem o mapa muda de tamanho quando a pessoa chega aqui.
+  const [showFacade, setShowFacade] = useState(false);
+
+  useEffect(() => {
+    const probe = new Image();
+    probe.onload = () => setShowFacade(true);
+    probe.src = FACADE_SRC;
+    return () => {
+      probe.onload = null;
+    };
+  }, []);
+
   return (
     <section id="contato" className="border-t border-white/10 py-24 sm:py-32">
       <div className="section-shell grid gap-14 lg:grid-cols-2 lg:items-start lg:gap-16">
@@ -60,12 +78,9 @@ export function Contact() {
 
           <Stagger className="mt-10 grid gap-3 sm:grid-cols-2" stagger={0.09}>
             {CONTACT_ITEMS.map((item) => {
-              const Icon = item.icon;
               const content = (
                 <div className="relative flex h-full items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/25 hover:bg-white/[0.06]">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white">
-                    <Icon className="h-4 w-4" />
-                  </span>
+                  <ContactIcon type={item.type} />
                   <div className={['min-w-0', item.href ? 'pr-6' : ''].join(' ')}>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-light">
                       {item.label}
@@ -117,14 +132,31 @@ export function Contact() {
           </Reveal>
         </div>
 
-        <Reveal direction="left" delay={0.15}>
+        <Reveal direction="left" delay={0.15} className="flex flex-col gap-4">
+          {/* Foto da fachada: some sozinha se o arquivo ainda não existir */}
+          {showFacade ? (
+            <figure className="relative overflow-hidden rounded-4xl border border-white/10">
+              <img
+                src={FACADE_SRC}
+                alt="Fachada da Máquina Team na Rua Fonseca Hermes, 5, no Centro de Juiz de Fora"
+                className="aspect-[4/3] w-full object-cover"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-5 pb-4 pt-10 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
+                Nossa fachada · Rua Fonseca Hermes, 5
+              </figcaption>
+            </figure>
+          ) : null}
+
           <div className="overflow-hidden rounded-4xl border border-white/10">
             <iframe
               title="Localização da Máquina Team"
               src="https://www.google.com/maps?q=Rua%20Fonseca%20Hermes%2C%205%20-%20Centro%2C%20Juiz%20de%20Fora%20-%20MG%2C%2036013-090&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="h-[320px] w-full grayscale contrast-125 sm:h-[480px]"
+              className={[
+                'w-full grayscale contrast-125',
+                showFacade ? 'h-[260px]' : 'h-[320px] sm:h-[480px]',
+              ].join(' ')}
             />
           </div>
         </Reveal>

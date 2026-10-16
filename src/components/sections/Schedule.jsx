@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import { BRAND, SCHEDULE, SCHEDULE_DAYS } from '../../data/content.js';
 import { SectionHeading } from '../ui/SectionHeading.jsx';
@@ -190,43 +191,89 @@ function MobileDayList() {
   );
 }
 
+const SUMMARY = [
+  { days: 'Segunda a sexta', hours: '07h às 20h' },
+  { days: 'Sábado', hours: '10h' },
+];
+
 export function Schedule() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <section id="horarios" className="border-t border-white/10 py-24 sm:py-32">
+    <section id="horarios" className="border-t border-white/10 py-20 sm:py-24">
       <div className="section-shell">
         <div data-scroll-anchor>
-          <SectionHeading
-            eyebrow="Horários"
-            title="Horários das aulas"
-            description="Turmas de segunda a sábado, com horários para quem treina cedo, no almoço ou à noite."
-            align="center"
-          />
+          <SectionHeading eyebrow="Horários" title="Horários das aulas" align="center" />
         </div>
 
-        <Reveal direction="up" delay={0.1} className="mt-12">
-          <DesktopGrid />
-          <MobileDayList />
-        </Reveal>
+        {/* Resumo sempre visível; a grade completa fica no dropdown */}
+        <Reveal direction="up" delay={0.1} className="mx-auto mt-10 max-w-3xl">
+          <div className="overflow-hidden rounded-4xl border border-white/10 bg-white/[0.025]">
+            <dl className="grid gap-px bg-white/10 sm:grid-cols-2">
+              {SUMMARY.map((item) => (
+                <div key={item.days} className="bg-brand-black px-6 py-6 text-center">
+                  <dt className="text-[10px] uppercase tracking-[0.24em] text-brand-gray-light">
+                    {item.days}
+                  </dt>
+                  <dd className="mt-2 font-heading text-3xl font-bold uppercase text-white sm:text-4xl">
+                    {item.hours}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
-        <Reveal direction="up" delay={0.1} className="mt-8">
-          <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
-            <p className="text-xs leading-6 text-brand-gray-light">
-              <span className="mr-2 inline-block rounded-full bg-white px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.14em] text-black align-middle">
-                Promo
-              </span>
-              Turmas do plano Boxe promocional. Horários sujeitos a alteração.
-            </p>
-            <a
-              href={BRAND.contact.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:border-white/60 hover:bg-white/5"
+          <div className="mt-6 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setOpen((value) => !value)}
+              aria-expanded={open}
+              aria-controls="grade-de-horarios"
+              className="inline-flex items-center gap-2 rounded-full border-[0.5px] border-white/40 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white/70 hover:bg-white/[0.05]"
             >
-              <FaWhatsapp className="h-4 w-4" />
-              Agende sua aula experimental gratuita
-            </a>
+              {open ? 'Esconder grade de aulas' : 'Ver grade completa de aulas'}
+              <ChevronDown
+                className={['h-4 w-4 transition-transform duration-300', open ? 'rotate-180' : ''].join(' ')}
+              />
+            </button>
           </div>
         </Reveal>
+
+        {/* Abre com transição de grid-template-rows (0fr → 1fr): só CSS, então
+            não depende de frames de animação em JS para abrir ou fechar. */}
+        <div
+          id="grade-de-horarios"
+          className={[
+            'grid transition-[grid-template-rows,opacity] duration-500 ease-out',
+            open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+          ].join(' ')}
+          inert={open ? undefined : ''}
+        >
+          <div className="overflow-hidden">
+            <div className="pt-8">
+              <DesktopGrid />
+              <MobileDayList />
+
+              <div className="mt-6 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
+                <p className="text-xs leading-6 text-brand-gray-light">
+                  <span className="mr-2 inline-block rounded-full bg-white px-1.5 py-px align-middle text-[8px] font-bold uppercase tracking-[0.14em] text-black">
+                    Promo
+                  </span>
+                  Turmas do plano Boxe promocional. Horários sujeitos a alteração.
+                </p>
+                <a
+                  href={BRAND.contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:border-white/60 hover:bg-white/5"
+                >
+                  <FaWhatsapp className="h-4 w-4" />
+                  Agende sua aula experimental gratuita
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
