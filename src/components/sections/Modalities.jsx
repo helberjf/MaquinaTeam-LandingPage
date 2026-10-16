@@ -1,6 +1,6 @@
-import { MODALITIES } from '../../data/content.js';
+import { BRAND, MODALITIES } from '../../data/content.js';
 import { SectionHeading } from '../ui/SectionHeading.jsx';
-import { Stagger, StaggerItem } from '../motion/Reveal.jsx';
+import { Reveal, Stagger, StaggerItem } from '../motion/Reveal.jsx';
 
 export function Modalities() {
   return (
@@ -9,12 +9,12 @@ export function Modalities() {
         <SectionHeading
           eyebrow="Modalidades"
           title="Rotina completa para luta"
-          description="Aulas de técnica, cardio, força e condicionamento para todos os níveis — do primeiro dia ao ringue."
+          description="Um CT completo em Juiz de Fora: do iniciante ao atleta, tem uma turma para você."
           align="center"
         />
 
         <Stagger
-          className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
           stagger={0.12}
         >
           {MODALITIES.map((modality) => (
@@ -50,6 +50,19 @@ export function Modalities() {
             </StaggerItem>
           ))}
         </Stagger>
+
+        <Reveal direction="up" delay={0.1} className="mt-10">
+          <ul className="flex flex-wrap justify-center gap-3">
+            {BRAND.audiences.map((audience) => (
+              <li
+                key={audience}
+                className="rounded-full border border-white/15 bg-white/[0.04] px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white"
+              >
+                {audience}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

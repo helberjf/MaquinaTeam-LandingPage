@@ -4,6 +4,7 @@ import { Hero } from './components/sections/Hero.jsx';
 import { Marquee } from './components/sections/Marquee.jsx';
 import { About } from './components/sections/About.jsx';
 import { Modalities } from './components/sections/Modalities.jsx';
+import { Schedule } from './components/sections/Schedule.jsx';
 import { Plans } from './components/sections/Plans.jsx';
 import { Testimonials } from './components/sections/Testimonials.jsx';
 import { Contact } from './components/sections/Contact.jsx';
@@ -21,6 +22,7 @@ export default function App() {
         <Marquee />
         <About />
         <Modalities />
+        <Schedule />
         <Plans />
         <Testimonials />
         <Contact />

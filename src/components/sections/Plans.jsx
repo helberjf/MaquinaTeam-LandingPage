@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Infinity as InfinityIcon, Star, User, Users } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
-import { BRAND, FULL_FEATURES, PLAN_GROUPS } from '../../data/content.js';
+import { BRAND, FULL_FEATURES, MODALITY_PLANS, PLAN_GROUPS } from '../../data/content.js';
 import { SectionHeading } from '../ui/SectionHeading.jsx';
 import { Reveal } from '../motion/Reveal.jsx';
 
@@ -188,6 +188,70 @@ export function Plans() {
             ))}
           </div>
         </Reveal>
+
+        {/* Planos por modalidade */}
+        <div className="mx-auto mt-20 max-w-4xl">
+          <Reveal direction="up">
+            <p className="eyebrow text-center">Planos por modalidade</p>
+            <h3 className="mt-3 text-center font-heading text-3xl font-bold uppercase leading-none text-white sm:text-4xl">
+              Kids, Jiu-Jitsu, Kickboxing e mais
+            </h3>
+          </Reveal>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+            className="mt-10 grid gap-5 sm:grid-cols-2"
+          >
+            {MODALITY_PLANS.map((item) => (
+              <motion.article
+                key={`${item.modality}-${item.tag ?? ''}`}
+                variants={{
+                  hidden: { opacity: 0, y: 32 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+                }}
+                className="flex flex-col rounded-3xl border border-white/10 bg-white/[0.025] p-6 transition-colors hover:border-white/20"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-brand-gray-light">
+                      Plano mensal
+                    </p>
+                    <h4 className="mt-1.5 font-heading text-2xl font-bold uppercase leading-tight text-white">
+                      {item.modality}
+                    </h4>
+                  </div>
+                  {item.tag ? (
+                    <span className="shrink-0 rounded-full bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-black">
+                      {item.tag}
+                    </span>
+                  ) : null}
+                </div>
+
+                <ul className="mt-5 flex flex-col">
+                  {item.plans.map((plan) => (
+                    <li key={plan.name} className="flex items-center gap-3 py-2">
+                      <FrequencyIcon plan={plan} className="h-3.5 w-3.5 shrink-0 text-brand-gray-light" />
+                      <span className="shrink-0 font-heading text-base font-semibold uppercase tracking-wide text-white/90">
+                        {plan.name}
+                      </span>
+                      <span aria-hidden="true" className="h-px flex-1 border-b border-dotted border-white/20" />
+                      <span className="shrink-0 font-heading text-xl font-bold tabular-nums text-white">
+                        {plan.price}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-auto border-t border-white/10 pt-4 text-xs leading-5 text-brand-gray-light">
+                  {item.note}
+                </p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
 
         {/* CTA */}
         <Reveal direction="up" delay={0.1} className="mx-auto mt-12 max-w-4xl">

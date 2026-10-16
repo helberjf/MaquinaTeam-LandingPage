@@ -58,10 +58,10 @@ export function About() {
             className="absolute left-3 top-6 rounded-2xl border border-white/15 bg-brand-black/90 px-5 py-4 backdrop-blur lg:-left-6"
           >
             <p className="font-heading text-3xl font-bold leading-none text-white">
-              Grátis
+              {BRAND.yearsLabel}
             </p>
             <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brand-gray-light">
-              Aula experimental
+              Anos de equipe
             </p>
           </Reveal>
         </div>
@@ -77,8 +77,22 @@ export function About() {
                 para quem treina
               </>
             }
-            description={`${BRAND.motto} A Máquina Team é um centro de treinamento de lutas em Juiz de Fora, focado em lutas, treinos e resultados — com o acompanhamento direto do ${BRAND.instructor}.`}
+            description={`${BRAND.motto} Fundada há mais de 16 anos por ${BRAND.founders}, com conquistas no Boxe, Jiu-Jitsu e Muay Thai, a Máquina Team é um centro de treinamento de lutas em Juiz de Fora. Mais do que uma equipe, uma família que forma atletas e transforma a mentalidade dos alunos.`}
           />
+
+          <Reveal direction="up" delay={0.2} className="mt-8">
+            <p className="eyebrow">Nossos valores</p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {BRAND.values.map((value) => (
+                <li
+                  key={value}
+                  className="rounded-full border border-white/15 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
+                >
+                  {value}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
 
           <Stagger className="mt-10 flex flex-col gap-4" stagger={0.12}>
             {BRAND.highlights.map((highlight) => (

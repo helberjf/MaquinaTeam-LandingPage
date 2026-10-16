@@ -51,7 +51,8 @@ export function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        {/* Com 7 links o menu só cabe a partir de 1280px; abaixo, hambúrguer. */}
+        <ul className="hidden items-center gap-7 xl:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -81,7 +82,7 @@ export function Navbar() {
             onClick={() => setOpen((value) => !value)}
             aria-label={open ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={open}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-white/40 lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-white/40 xl:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -95,7 +96,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-white/10 bg-brand-black/95 backdrop-blur-xl lg:hidden"
+            className="overflow-hidden border-t border-white/10 bg-brand-black/95 backdrop-blur-xl xl:hidden"
           >
             <ul className="section-shell flex flex-col gap-1 py-5">
               {NAV_LINKS.map((link, index) => (
