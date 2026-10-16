@@ -4,10 +4,15 @@ import { Check } from 'lucide-react';
 import { BRAND } from '../../data/content.js';
 import { SectionHeading } from '../ui/SectionHeading.jsx';
 import { Reveal, Stagger, StaggerItem } from '../motion/Reveal.jsx';
+import { useMediaQuery } from '../../hooks/useMediaQuery.js';
 
 export function About() {
   const ref = useRef(null);
   const reduceMotion = useReducedMotion();
+  // O parallax só roda com as colunas lado a lado. Empilhado, a foto fica logo
+  // abaixo da lista e o deslocamento para cima invadia o último card.
+  const isTwoColumns = useMediaQuery('(min-width: 1024px)');
+  const parallax = !reduceMotion && isTwoColumns;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
@@ -23,7 +28,7 @@ export function About() {
         {/* Media column */}
         <div ref={ref} className="relative order-2 lg:order-1">
           <motion.div
-            style={reduceMotion ? undefined : { y: backY }}
+            style={parallax ? { y: backY } : undefined}
             className="relative aspect-[4/5] w-full overflow-hidden rounded-4xl border border-white/10"
           >
             <img
@@ -36,8 +41,8 @@ export function About() {
           </motion.div>
 
           <motion.div
-            style={reduceMotion ? undefined : { y: frontY }}
-            className="absolute -bottom-10 -right-2 w-[46%] overflow-hidden rounded-3xl border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.6)] sm:-right-6 sm:w-[42%]"
+            style={parallax ? { y: frontY } : undefined}
+            className="absolute -bottom-10 right-3 w-[46%] overflow-hidden rounded-3xl border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.6)] sm:w-[42%] lg:-right-6"
           >
             <img
               src="/images/instrutor.jpg"
@@ -50,7 +55,7 @@ export function About() {
           <Reveal
             direction="left"
             delay={0.2}
-            className="absolute -left-2 top-6 rounded-2xl border border-white/15 bg-brand-black/90 px-5 py-4 backdrop-blur sm:-left-6"
+            className="absolute left-3 top-6 rounded-2xl border border-white/15 bg-brand-black/90 px-5 py-4 backdrop-blur lg:-left-6"
           >
             <p className="font-heading text-3xl font-bold leading-none text-white">
               {new Date().getFullYear() - BRAND.foundedYear}+

@@ -157,12 +157,15 @@ export function Plans() {
       />
 
       <div className="section-shell relative">
-        <SectionHeading
-          eyebrow="Planos"
-          title="Escolha seu plano"
-          description="Boxe • Muay Thai • Funcional. Todos os valores são mensais, com acesso a todas as modalidades."
-          align="center"
-        />
+        {/* "Ver planos" para aqui: título logo abaixo do menu e o Mensal inteiro na tela */}
+        <div data-scroll-anchor>
+          <SectionHeading
+            eyebrow="Planos"
+            title="Escolha seu plano"
+            description="Boxe • Muay Thai • Funcional. Todos os valores são mensais, com acesso a todas as modalidades."
+            align="center"
+          />
+        </div>
 
         <div className="mx-auto mt-16 flex max-w-4xl flex-col gap-10">
           {PLAN_GROUPS.map((group) => (
