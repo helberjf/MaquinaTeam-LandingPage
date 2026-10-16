@@ -49,6 +49,15 @@
   .hairline {
     @apply border-white/10;
   }
+
+  /* Faixa rolável sem barra de rolagem visível (carrossel de depoimentos). */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Scrollbar */

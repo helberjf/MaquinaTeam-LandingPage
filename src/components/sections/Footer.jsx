@@ -1,6 +1,5 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
-import { FaInstagram, FaWhatsapp } from 'react-icons/fa6';
 import { BRAND, NAV_LINKS, MODALITIES } from '../../data/content.js';
+import { ContactIcon } from '../ui/ContactIcon.jsx';
 import { handleAnchorClick } from '../../lib/scrollToSection.js';
 import { Reveal } from '../motion/Reveal.jsx';
 
@@ -70,7 +69,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-2.5 transition hover:text-white"
                 >
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                  <ContactIcon type="address" size="sm" />
                   {BRAND.address.full}
                 </a>
               </li>
@@ -79,7 +78,7 @@ export function Footer() {
                   href="tel:+553231983704"
                   className="flex items-center gap-2.5 transition hover:text-white"
                 >
-                  <Phone className="h-4 w-4 shrink-0" />
+                  <ContactIcon type="phone" size="sm" />
                   {BRAND.contact.phone}
                 </a>
               </li>
@@ -90,7 +89,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 transition hover:text-white"
                 >
-                  <FaWhatsapp className="h-4 w-4 shrink-0" />
+                  <ContactIcon type="whatsapp" size="sm" />
                   {BRAND.contact.whatsapp}
                 </a>
               </li>
@@ -99,7 +98,7 @@ export function Footer() {
                   href={`mailto:${BRAND.contact.email}`}
                   className="flex items-center gap-2.5 break-all transition hover:text-white"
                 >
-                  <Mail className="h-4 w-4 shrink-0" />
+                  <ContactIcon type="email" size="sm" />
                   {BRAND.contact.email}
                 </a>
               </li>
@@ -110,7 +109,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 transition hover:text-white"
                 >
-                  <FaInstagram className="h-4 w-4 shrink-0" />
+                  <ContactIcon type="instagram" size="sm" />
                   {BRAND.contact.instagram}
                 </a>
               </li>

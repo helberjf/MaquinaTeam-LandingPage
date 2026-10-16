@@ -29,7 +29,7 @@ export function About() {
         <div ref={ref} className="relative order-2 lg:order-1">
           <motion.div
             style={parallax ? { y: backY } : undefined}
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-4xl border border-white/10"
+            className="relative aspect-[16/10] w-full overflow-hidden rounded-4xl border border-white/10 lg:aspect-[4/4]"
           >
             <img
               src="/images/interior.webp"
@@ -42,7 +42,7 @@ export function About() {
 
           <motion.div
             style={parallax ? { y: frontY } : undefined}
-            className="absolute -bottom-10 right-3 w-[46%] overflow-hidden rounded-3xl border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.6)] sm:w-[42%] lg:-right-6"
+            className="absolute -bottom-8 right-3 w-[30%] overflow-hidden rounded-3xl border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.6)] sm:w-[26%] lg:-right-6 lg:w-[38%]"
           >
             <img
               src="/images/instrutor.jpg"

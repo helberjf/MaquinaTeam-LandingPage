@@ -80,7 +80,8 @@ export const MODALITIES = [
     name: 'Jiu-Jitsu',
     description:
       'Quedas, controle e finalizações no tatame, com evolução técnica do iniciante ao atleta.',
-    image: '/images/fachada.webp',
+    // Provisória até ter uma foto de Jiu-Jitsu.
+    image: '/images/instrutor.jpg',
   },
   {
     name: 'Funcional',
@@ -265,25 +266,100 @@ export const FULL_FEATURES = [
 ];
 
 export const REVIEWS = [
+  // Avaliações reais do Google (5 estrelas), em trechos curtos e com o texto
+  // original. Ficaram de fora as avaliações sem texto e as de nomes iguais
+  // aos dos fundadores (Thalles Guimaraes e Arthur Botelho).
   {
     author: 'João Augusto Freire',
-    initials: 'JA',
-    text: 'Centro de treinamento de boxe de nível altíssimo, professor Arthur Maquininha super reconhecido, multicampeão! Excelente! Recomendo de olhos fechados!',
+    text: 'Centro de treinamento de boxe de nível altíssimo, professor Arthur Maquininha super reconhecido, multicampeão! Recomendo de olhos fechados!',
+    rating: 5,
+  },
+  {
+    author: 'Kelyson Freitas',
+    text: 'O ambiente é motivador, o treino é puxado na medida certa e o mestre Arthur é excelente.',
     rating: 5,
   },
   {
     author: 'César Nunes',
-    initials: 'CN',
-    text: 'Melhor academia de boxe! Ambiente motivador. Aprendi muito e me senti acolhido desde o primeiro dia. Recomendo demais!',
+    text: 'Melhor academia de boxe! Ambiente motivador. Aprendi muito e me senti acolhido desde o primeiro dia.',
+    rating: 5,
+  },
+  {
+    author: 'Guilherme Ghedim',
+    text: 'Simplesmente a melhor experiência que já tive com treinamento de boxe! A estrutura da academia é excelente.',
+    rating: 5,
+  },
+  {
+    author: 'Juan Loures',
+    text: 'Melhor academia de Juiz de Fora, já passei por outras academias, mas na Máquina Team tive uma evolução excepcional',
+    rating: 5,
+  },
+  {
+    author: 'Vinicius',
+    text: 'Os professores explicam bem, são pacientes com quem está começando e os treinos são bem organizados.',
+    rating: 5,
+  },
+  {
+    author: 'Rodrigo Silva',
+    text: 'Mais do que uma escola de luta, uma escola de determinação, respeito e compromisso.',
     rating: 5,
   },
   {
     author: 'Matheus Corrêa',
-    initials: 'MC',
-    text: 'Lugar perfeito para quem quer iniciar a praticar boxe, e também tem muitos atletas de alto nível para quem já é experiente! Recomendo muito.',
+    text: 'Lugar perfeito para quem quer iniciar a praticar boxe, e também tem muitos atletas de alto nível para quem já é experiente!',
+    rating: 5,
+  },
+  {
+    author: 'Hugo Silva',
+    text: 'As aulas de boxe são intensas, mas ao mesmo tempo divertidas. Dá pra sentir a evolução a cada treino.',
+    rating: 5,
+  },
+  {
+    author: 'Carlos Condé',
+    text: 'Professores top, com conhecimento de alto nível, e cuidado com aluno 👏💪',
+    rating: 5,
+  },
+  {
+    author: 'Pedro Dias',
+    text: 'Ótimo espaço. Ótimo aprendizado. E ótimo ringue de luta.',
+    rating: 5,
+  },
+  {
+    author: 'Jason Todd',
+    text: 'Para quem está começando e para quem está afastado do boxe, é o melhor local para aprender.',
+    rating: 5,
+  },
+  {
+    author: 'Lays Silva',
+    text: 'Eu amei a recepção, amei a academia... Já fiz a minha matrícula e já estou super ansiosa 😍',
+    rating: 5,
+  },
+  {
+    author: 'Wanderson',
+    text: 'A melhor da cidade só vem 🔥🚀',
+    rating: 5,
+  },
+  {
+    author: 'Ster Nascimento',
+    text: 'Muito bom, super recomendo',
+    rating: 5,
+  },
+  {
+    author: 'Antoniel Sinfronio',
+    text: 'Recomendo!!',
     rating: 5,
   },
 ];
+
+// Links oficiais do Google a partir do Place ID da academia.
+const GOOGLE_PLACE_ID = 'ChIJa4GnLV6dmAARxdy8XexxaNM';
+
+export const GOOGLE_RATING = {
+  score: '5,0',
+  count: 139,
+  reviewsUrl: `https://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}`,
+  writeReviewUrl: `https://search.google.com/local/writereview?placeid=${GOOGLE_PLACE_ID}`,
+};
 
 export const NAV_LINKS = [
   { label: 'Início', href: '#inicio' },
