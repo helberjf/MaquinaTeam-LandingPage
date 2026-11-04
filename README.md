@@ -1,82 +1,49 @@
 # Máquina Team — Landing Page
 
-Landing page institucional da Máquina Team (Premium Fight Club, Juiz de Fora - MG), construída em **React + Vite** com **Tailwind CSS** e animações de scroll com **Framer Motion**.
+A presentation website for Máquina Team, a fight club in Juiz de Fora, Brazil. Built with React, Vite, Tailwind CSS and Framer Motion, it combines gym photography, class information, membership-plan presentation and WhatsApp contact.
 
-É uma versão **somente institucional** do site original: sem venda/checkout, sem blog e sem login ou cadastro. Os planos são apresentados apenas como informação, com CTA para WhatsApp.
+This is the standalone marketing site. It does not include checkout, a blog, member registration or the private gym-management application.
 
-## Rodando o projeto
+## Explore the page
+
+Scroll from the video hero through the gym, training modalities, plans, timetable, testimonials and contact section. Compare plan periods, open the full pricing table and prepare a WhatsApp enquiry. Review the same page with a narrow viewport and reduced-motion settings.
+
+Prices and testimonials are maintained as static content. They are not synchronized from billing or Google reviews.
+
+## Run and build
+
+Use Node.js 22 and npm.
 
 ```bash
-npm install
+git clone https://github.com/helberjf/MaquinaTeam-LandingPage.git
+cd MaquinaTeam-LandingPage
+npm ci
 npm run dev
 ```
 
-O site abre em `http://localhost:5173`.
-
-Para gerar o build de produção:
+Open `http://localhost:5173`.
 
 ```bash
 npm run build
+npm run preview
 ```
 
-Os arquivos finais ficam em `dist/` (pronto para deploy na Vercel, Netlify ou qualquer host estático).
+The output is `dist`, suitable for static hosting. No automated test or lint script is currently configured; the build is a packaging check rather than proof of visual or interaction correctness.
 
-## Estrutura
+## Maintain the content
 
-```
-src/
-  App.jsx                      # composição das seções
-  data/content.js              # TODO o conteúdo do site (textos, planos, contato)
-  components/
-    motion/
-      Reveal.jsx               # Reveal, Stagger e StaggerItem (animação ao entrar na tela)
-      ScrollProgressBar.jsx    # barra de progresso de scroll no topo
-    ui/
-      SectionHeading.jsx       # título padrão das seções
-      WhatsappFab.jsx          # botão flutuante do WhatsApp
-    sections/
-      Navbar.jsx               # menu fixo com blur ao rolar + menu mobile
-      Hero.jsx                 # vídeo de fundo com parallax e entrada do título
-      Marquee.jsx              # faixa de modalidades que desliza com o scroll
-      About.jsx                # sobre a academia, com imagens em parallax
-      Modalities.jsx           # Boxe, Muay Thai e Funcional
-      Plans.jsx                # planos (abas + tabela completa)
-      Testimonials.jsx         # avaliações do Google
-      Contact.jsx              # contato, horários e mapa
-      Footer.jsx               # rodapé
-public/
-  images/                      # fotos da academia e logo
-  videos/hero.mp4              # vídeo de fundo do hero
-```
+- [src/data/content.js](src/data/content.js): texts, membership plans, schedule, contact details and testimonials. Update pricing here instead of duplicating a price table in the README.
+- [src/App.jsx](src/App.jsx): section composition.
+- [src/components/sections](src/components/sections): hero, plans, schedule, contact and other sections.
+- [src/components/motion](src/components/motion): reveal effects and scroll progress.
+- [src/lib/scrollToSection.js](src/lib/scrollToSection.js): section navigation.
+- [public/images](public/images), [public/videos](public/videos): gym media.
 
-## Onde editar o conteúdo
+The animation code includes reduced-motion branches. Manual review should cover keyboard navigation, menu focus, plan tabs, WhatsApp links and media behavior, rather than assuming every accessibility requirement is established by that support.
 
-Praticamente tudo (preços, textos, telefone, endereço, depoimentos) está centralizado em
-[`src/data/content.js`](src/data/content.js). Mudou um valor de plano? Edite só esse arquivo.
+## Design tradeoffs
 
-### Planos
-
-Os planos seguem a tabela oficial "Escolha seu plano":
-
-| Frequência       | Mensal | Trimestral | Semestral |
-| ---------------- | ------ | ---------- | --------- |
-| 1x na Semana     | R$ 155 | R$ 145     | R$ 135    |
-| 2x na Semana     | R$ 179 | R$ 169     | R$ 159    |
-| 3x na Semana     | R$ 199 | R$ 189     | R$ 175    |
-| FULL (Ilimitado) | R$ 219 | R$ 209     | R$ 199    |
-
-O período **Trimestral** vem marcado como "mais vendido" e já aparece selecionado por padrão.
-
-## Animações de scroll
-
-- **Barra de progresso** no topo, ligada ao scroll da página (`useScroll` + `useSpring`).
-- **Hero em parallax**: o vídeo desce e dá zoom enquanto o texto sobe e some.
-- **Entrada do título** palavra por palavra, com rotação 3D.
-- **Reveal ao entrar na tela** em todas as seções, com stagger nos grids e listas.
-- **Faixa de modalidades** que desliza horizontalmente conforme a página rola.
-- **Imagens em parallax** na seção da academia (camadas em velocidades diferentes).
-- **Abas de planos** com indicador animado (`layoutId`) e troca de cards com `AnimatePresence`.
-- **Linhas da tabela** que entram uma a uma.
-- **Botão do WhatsApp** que aparece depois de 500px de scroll.
-
-Tudo respeita `prefers-reduced-motion`: quem tem animações reduzidas no sistema vê a página estática.
+- **Static marketing scope:** deployment is small and does not require authentication or billing infrastructure, while enquiries and membership conversion continue outside the site.
+- **Centralized content:** a single module keeps plan and contact updates consistent, but non-developer editing requires a content-management workflow that is not present here.
+- **Video and scroll motion:** create a distinctive presentation, at the cost of media bandwidth and rendering work; reduced-motion behavior and a readable static layout matter.
+- **Reusable React sections:** content and animation stay modular, while the JavaScript runtime is a larger dependency than a simple HTML-only landing page.
