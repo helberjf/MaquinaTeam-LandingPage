@@ -11,3 +11,9 @@ maquina_team_site/
 maquina_team_site_planos_atualizados/
 indexteste.html
 indexteste copy.html
+
+# Local AI assistant files
+.claude/
+.openclaw/
+.superpowers/
+docs/superpowers/
